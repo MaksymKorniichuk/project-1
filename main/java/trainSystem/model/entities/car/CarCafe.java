@@ -1,7 +1,7 @@
-package trainSystem.entities.forCars.cars;
+package trainSystem.model.entities.car;
 
-import trainSystem.entities.forCars.GeneralTypeOfCar;
-import trainSystem.entities.forCars.PlaceInCar;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
+import trainSystem.model.entities.car.forCar.PlaceInCar;
 
 import java.util.List;
 

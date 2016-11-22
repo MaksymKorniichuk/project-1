@@ -1,10 +1,10 @@
 package trainSystem;
 
-import trainSystem.entities.Train;
-import trainSystem.entities.forCars.GlobalConstantsForCars;
-import trainSystem.entities.forCars.PlaceInCar;
-import trainSystem.entities.forCars.TypeOfPeopleTransportationCar;
-import trainSystem.entities.forCars.cars.*;
+import trainSystem.model.entities.Train;
+import trainSystem.model.entities.car.*;
+import trainSystem.model.entities.car.forCar.GlobalConstantsForCars;
+import trainSystem.model.entities.car.forCar.PlaceInCar;
+import trainSystem.model.entities.car.forCar.TypeOfPeopleTransportationCar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,7 +135,7 @@ public class InitializerOfTrains {
         initCarForBaggage(carForBaggage);
         cars.add(carForBaggage);
 
-        // створюю потяг з вагонами, номером й власною назвою
+        // creation of train
         return new Train(90, "", cars);
     }
 

@@ -1,7 +1,7 @@
-package trainSystem.entities.forCars.cars;
+package trainSystem.model.entities.car;
 
-import trainSystem.entities.forCars.Baggage;
-import trainSystem.entities.forCars.GeneralTypeOfCar;
+import trainSystem.model.entities.car.forCar.Baggage;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
 
 import java.util.ArrayList;
 import java.util.List;

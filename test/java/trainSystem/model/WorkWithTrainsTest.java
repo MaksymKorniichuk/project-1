@@ -3,7 +3,7 @@ package trainSystem.model;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import trainSystem.TestInitializerOfTrains;
-import trainSystem.entities.Train;
+import trainSystem.model.entities.Train;
 
 import java.util.ArrayList;
 

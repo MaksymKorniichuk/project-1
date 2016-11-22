@@ -1,12 +1,13 @@
-package trainSystem.entities;
+package trainSystem.model.entities;
 
-import trainSystem.entities.forCars.cars.Car;
-import trainSystem.entities.forCars.cars.CarForPeopleTransportation;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
+import trainSystem.model.entities.car.Car;
+import trainSystem.model.entities.car.CarForPeopleTransportation;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Entity of train.
@@ -27,7 +28,7 @@ public class Train {
     private List<Car> cars;
 
     /**
-     * COnstructor of the class.
+     * Constructor of the class.
      * @param numberOfTrain number of trains.
      * @param trainName train name.
      * @param cars list of cars.
@@ -42,12 +43,13 @@ public class Train {
      * Sorting cars by its numbers.
      */
     public void sortCarsByItsNumbers() {
-        Collections.sort(cars, new Comparator<Car>() {
+        Collections.sort(cars, (o1, o2) -> o1.getNumberOfCar() - o2.getNumberOfCar());
+        /*Collections.sort(cars, new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getNumberOfCar() - o2.getNumberOfCar();
             }
-        });
+        });*/
     }
 
     /**
@@ -61,12 +63,15 @@ public class Train {
         carForPeopleTransportation = getAllCarsForPeopleTransportation();
         carsNotForPeopleTransportation = getAllCarsNotForPeopleTransportation();
 
-        Collections.sort(carForPeopleTransportation, new Comparator<CarForPeopleTransportation>() {
+        Collections.sort(carForPeopleTransportation,
+                (o1, o2) -> o1.getTypeOfPeopleTransportationCar().ordinal()
+                        - o2.getTypeOfPeopleTransportationCar().ordinal());
+        /*Collections.sort(carForPeopleTransportation, new Comparator<CarForPeopleTransportation>() {
             @Override
             public int compare(CarForPeopleTransportation o1, CarForPeopleTransportation o2) {
                 return o1.getTypeOfPeopleTransportationCar().ordinal() - o2.getTypeOfPeopleTransportationCar().ordinal();
             }
-        });
+        });*/
         sortedCarList.addAll(carForPeopleTransportation);
         sortedCarList.addAll(carsNotForPeopleTransportation);
 
@@ -78,12 +83,16 @@ public class Train {
      * @return cars for people transportation.
      */
     private ArrayList<CarForPeopleTransportation> getAllCarsForPeopleTransportation() {
-        ArrayList<CarForPeopleTransportation> carsForPeopleTransportation = new ArrayList<>();
+        ArrayList<CarForPeopleTransportation> carsForPeopleTransportation = cars.stream()
+                .filter(car -> car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION))
+                .map(car -> (CarForPeopleTransportation) car)
+                .collect(Collectors.toCollection(ArrayList::new));
+        /*ArrayList<CarForPeopleTransportation> carsForPeopleTransportation = new ArrayList<>();
         for (Car car : cars) {
-            if (car instanceof CarForPeopleTransportation) {
+            if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION)) {
                 carsForPeopleTransportation.add((CarForPeopleTransportation) car);
             }
-        }
+        }*/
         return carsForPeopleTransportation;
     }
 
@@ -92,12 +101,15 @@ public class Train {
      * @return cars NOT for people transportation.
      */
     private ArrayList<Car> getAllCarsNotForPeopleTransportation() {
-        ArrayList<Car> carsNotForPeopleTransportation = new ArrayList<>();
+        ArrayList<Car> carsNotForPeopleTransportation = cars.stream()
+                .filter(car -> !(car instanceof CarForPeopleTransportation))
+                .collect(Collectors.toCollection(ArrayList::new));
+        /*ArrayList<Car> carsNotForPeopleTransportation = new ArrayList<>();
         for (Car car : cars) {
             if (!(car instanceof CarForPeopleTransportation)) {
                 carsNotForPeopleTransportation.add(car);
             }
-        }
+        }*/
         return carsNotForPeopleTransportation;
     }
 

@@ -1,6 +1,6 @@
-package trainSystem.entities.forCars.cars;
+package trainSystem.model.entities.car;
 
-import trainSystem.entities.forCars.GeneralTypeOfCar;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
 
 /**
  * Entity of a car restaurant.

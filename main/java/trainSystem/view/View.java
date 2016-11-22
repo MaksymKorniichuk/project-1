@@ -1,9 +1,9 @@
 package trainSystem.view;
 
-import trainSystem.entities.Train;
-import trainSystem.entities.forCars.GeneralTypeOfCar;
-import trainSystem.entities.forCars.cars.Car;
-import trainSystem.entities.forCars.cars.CarForPeopleTransportation;
+import trainSystem.model.entities.Train;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
+import trainSystem.model.entities.car.Car;
+import trainSystem.model.entities.car.CarForPeopleTransportation;
 
 /**
  * The class contains a texts constants and methods to communicate with user.
@@ -12,19 +12,20 @@ import trainSystem.entities.forCars.cars.CarForPeopleTransportation;
 public class View {
     // Text's constants
     public final String GREETING = "Welcome to our program TrainSystem !";
-    public final String MENU = "You can choose one of the next actions:\n" +
+    public final String MENU = "\nYou can choose one of the next actions:\n" +
             "1) See existing trains;\n2) Get general numbers of passengers in trains;\n" +
             "3) Get general numbers of baggage in trains;\n4) Sort cars of trains by its numbers and view it;\n" +
             "5) Sort cars of trains by its types and view it;\n" +
             "6)Find cars with number of passengers between some limits." +
             "\n\nEnter necessary variant (e.g. \"1\"), or enter \"exit\" to close the program:";
     public final String BAD_INPUT_DATA = "Sorry, but your data is NOT correct. Please, try again:";
-    public final String CLOSE_OF_PROGRAM = "Thank you for using our program TrainSystem. Good luck !";
+    public final String CLOSE_OF_PROGRAM = "\nThank you for using our program TrainSystem. Good luck !";
     public final String NUMBER_OF_PASSENGERS_IN_TRAIN = "Total number of passengers in train:";
     public final String NUMBER_OF_BAGGAGE_IN_TRAIN = "Total number of baggage in train:";
     public final String MIN_LIMIT_OF_PASSENGERS_RANGE = "Please, enter minimum limit of passengers range NOT less that ";
     public final String MAX_LIMIT_OF_PASSENGERS_RANGE = "Please, enter maximum limit of passengers range NOT less that ";
     public final String CAR_WITH_PASSENGERS_IN_RANGE = "All cars with number of passengers in range";
+    public final String NONE = "none.";
 
     /**
      * Printing a message in console.

@@ -1,12 +1,12 @@
 package trainSystem.model;
 
-import trainSystem.entities.forCars.cars.CarForBaggage;
-import trainSystem.entities.Train;
-import trainSystem.entities.forCars.GeneralTypeOfCar;
-import trainSystem.entities.forCars.PlaceInCar;
-import trainSystem.entities.forCars.cars.Car;
-import trainSystem.entities.forCars.cars.CarCafe;
-import trainSystem.entities.forCars.cars.CarForPeopleTransportation;
+import trainSystem.model.entities.car.CarForBaggage;
+import trainSystem.model.entities.Train;
+import trainSystem.model.entities.car.forCar.GeneralTypeOfCar;
+import trainSystem.model.entities.car.forCar.PlaceInCar;
+import trainSystem.model.entities.car.Car;
+import trainSystem.model.entities.car.CarCafe;
+import trainSystem.model.entities.car.CarForPeopleTransportation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class WorkWithTrains {
         int totalNumberOfBaggageInTrain = 0;
 
         for (Car car : cars) {
-            if (car instanceof CarForBaggage) {
+            if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.BAGGAGE)) {
                 totalNumberOfBaggageInTrain += ((CarForBaggage) car).getBaggage().size();
             }
         }

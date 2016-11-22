@@ -1,8 +1,8 @@
 package trainSystem.controller;
 
 import trainSystem.model.WorkWithTrains;
-import trainSystem.entities.Train;
-import trainSystem.entities.forCars.cars.Car;
+import trainSystem.model.entities.Train;
+import trainSystem.model.entities.car.Car;
 import trainSystem.view.View;
 
 import java.io.InputStream;
@@ -53,7 +53,7 @@ public class Controller {
         String strInput;
         // cycle for user working with menu
         while (true) {
-            view.printMessage('\n' + view.MENU);
+            view.printMessage(view.MENU);
             if (!scanner.hasNextInt()) {
                 strInput = scanner.next();
                 if (exitLabel.equals(strInput)) {
@@ -133,9 +133,10 @@ public class Controller {
      */
     private void sortCarsOfTrainsByItsNumbersAndViewIt() {
         List<Train> trains = workWithTrains.getTrains();
-        for (Train train : trains) {
+        trains.forEach(Train::sortCarsByItsNumbers);
+        /*for (Train train: trains) {
             train.sortCarsByItsNumbers();
-        }
+        }*/
         showExistingTrains();
     }
 
@@ -144,9 +145,10 @@ public class Controller {
      */
     private void sortCarsOfTrainsByItsTypesAndViewIt() {
         List<Train> trains = workWithTrains.getTrains();
-        for (Train train : trains) {
+        trains.forEach(Train::sortCarsByItsType);
+        /*for (Train train: trains) {
             train.sortCarsByItsType();
-        }
+        }*/
         showExistingTrains();
     }
 
@@ -164,15 +166,22 @@ public class Controller {
 
         // finding and showing appropriate cars
         List<Train> trains = workWithTrains.getTrains();
+        int numberOfFoundedCars = 0;
         view.printMessageWithRange("\n" + view.CAR_WITH_PASSENGERS_IN_RANGE, minLimitOfPassengers,
                 maxLimitOfPassengers);
         for (Train train : trains) {
             ArrayList<Car> cars = workWithTrains.getCarsFromTrainWithNumbersOfPassengersInRange(train,
                     minLimitOfPassengers, maxLimitOfPassengers);
+            if(cars.size() != 0){
+                numberOfFoundedCars += cars.size();
+            }
             for (Car car : cars) {
                 view.printCarAndItsTrain(train.getNumberOfTrain(), train.getTrainName(), car,
                         workWithTrains.getNumberOfPassengersFromCar(car));
             }
+        }
+        if(numberOfFoundedCars == 0){
+            view.printMessage(view.NONE);
         }
     }
 

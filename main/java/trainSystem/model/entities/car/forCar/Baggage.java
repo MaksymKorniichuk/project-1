@@ -1,4 +1,4 @@
-package trainSystem.entities.forCars;
+package trainSystem.model.entities.car.forCar;
 
 /**
  * Entity of Baggage.

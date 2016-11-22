@@ -1,4 +1,4 @@
-package trainSystem.entities.forCars;
+package trainSystem.model.entities.car.forCar;
 
 /**
  * Enumeration of general types of cars.
