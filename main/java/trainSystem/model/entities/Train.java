@@ -83,7 +83,7 @@ public class Train {
      * @return cars for people transportation.
      */
     private ArrayList<CarForPeopleTransportation> getAllCarsForPeopleTransportation() {
-        ArrayList<CarForPeopleTransportation> carsForPeopleTransportation = cars.stream()
+        return cars.stream()
                 .filter(car -> car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION))
                 .map(car -> (CarForPeopleTransportation) car)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -92,8 +92,8 @@ public class Train {
             if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION)) {
                 carsForPeopleTransportation.add((CarForPeopleTransportation) car);
             }
-        }*/
-        return carsForPeopleTransportation;
+        }
+        return carsForPeopleTransportation;*/
     }
 
     /**
@@ -101,7 +101,7 @@ public class Train {
      * @return cars NOT for people transportation.
      */
     private ArrayList<Car> getAllCarsNotForPeopleTransportation() {
-        ArrayList<Car> carsNotForPeopleTransportation = cars.stream()
+        return cars.stream()
                 .filter(car -> !(car instanceof CarForPeopleTransportation))
                 .collect(Collectors.toCollection(ArrayList::new));
         /*ArrayList<Car> carsNotForPeopleTransportation = new ArrayList<>();
@@ -109,8 +109,9 @@ public class Train {
             if (!(car instanceof CarForPeopleTransportation)) {
                 carsNotForPeopleTransportation.add(car);
             }
-        }*/
-        return carsNotForPeopleTransportation;
+        }
+        return carsNotForPeopleTransportation;*/
+
     }
 
     public Integer getNumberOfTrain() {

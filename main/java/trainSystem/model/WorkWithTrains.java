@@ -39,7 +39,7 @@ public class WorkWithTrains {
         int totalNumberOfPassengersInTrain = 0;
 
         Integer numberOfPassengersInCurrentCar;
-        for (Car car : cars) {
+        for (Car car: cars) {
             numberOfPassengersInCurrentCar = getNumberOfPassengersFromCar(car);
             if (numberOfPassengersInCurrentCar != null) {
                 totalNumberOfPassengersInTrain += numberOfPassengersInCurrentCar;
@@ -58,7 +58,7 @@ public class WorkWithTrains {
         List<Car> cars = train.getCars();
         int totalNumberOfBaggageInTrain = 0;
 
-        for (Car car : cars) {
+        for (Car car: cars) {
             if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.BAGGAGE)) {
                 totalNumberOfBaggageInTrain += ((CarForBaggage) car).getBaggage().size();
             }
@@ -74,13 +74,13 @@ public class WorkWithTrains {
      * @param maxLimitOfPassengers max limit of range inclusively.
      * @return list of appropriate cars in current train.
      */
-    public ArrayList<Car> getCarsFromTrainWithNumbersOfPassengersInRange(Train train, int milLimitOfPassengers,
+    public List<Car> getCarsFromTrainWithNumbersOfPassengersInRange(Train train, int milLimitOfPassengers,
                                                                          int maxLimitOfPassengers) {
         List<Car> allCarsFromTrain = train.getCars();
         ArrayList<Car> carsWithNumbersOfPassengersInGivenRange = new ArrayList<>();
 
         Integer numbOfPassengersInCurrentCar;
-        for (Car car : allCarsFromTrain) {
+        for (Car car: allCarsFromTrain) {
             numbOfPassengersInCurrentCar = getNumberOfPassengersFromCar(car);
             if (numbOfPassengersInCurrentCar != null && numbOfPassengersInCurrentCar >= milLimitOfPassengers
                     && numbOfPassengersInCurrentCar <= maxLimitOfPassengers) {
@@ -98,33 +98,23 @@ public class WorkWithTrains {
      */
     public Integer getNumberOfPassengersFromCar(Car car) {
         List<PlaceInCar> placesInCar;
-        Integer totalNumberOfPassengersInTrain;
+        Integer totalNumberOfPassengersInTrain = 0;
 
-        // if it is car for people transportation
-        if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION)) {
-            totalNumberOfPassengersInTrain = 0;
-            placesInCar = ((CarForPeopleTransportation) car).getPlacesInCar();
-            for (PlaceInCar placeInCar : placesInCar) {
-                if (!placeInCar.isFree()) {
-                    totalNumberOfPassengersInTrain++;
-                }
-            }
-            return totalNumberOfPassengersInTrain;
-        }
-
-        // if it is car cafe
         if (car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.CAFE)) {
-            totalNumberOfPassengersInTrain = 0;
             placesInCar = ((CarCafe) car).getPlacesInCar();
-            for (PlaceInCar placeInCar : placesInCar) {
-                if (!placeInCar.isFree()) {
-                    totalNumberOfPassengersInTrain++;
-                }
-            }
-            return totalNumberOfPassengersInTrain;
+        } else if(car.getGeneralTypeOfCar().equals(GeneralTypeOfCar.FOR_PEOPLE_TRANSPORTATION)){
+            placesInCar = ((CarForPeopleTransportation) car).getPlacesInCar();
+        } else {
+            return null;
         }
 
-        return null;
+        for (PlaceInCar placeInCar : placesInCar) {
+            if (!placeInCar.isFree()) {
+                totalNumberOfPassengersInTrain++;
+            }
+        }
+
+        return totalNumberOfPassengersInTrain;
     }
 
     /**

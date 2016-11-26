@@ -1,0 +1,14 @@
+package trainSystem.view;
+
+/**
+ * The enumeration of menu items.
+ * @author Maksym.
+ */
+public enum MenuItems {
+    SHOW_EXISTING_TRAINS,
+    SHOW_PASSENGERS_NUMBER_IN_TRAINS,
+    SHOW_BAGGAGE_NUMBER_IN_TRAINS,
+    SORT_CARS_OF_TRAINS_BY_ITS_NUMBERS_AND_VIEW_IT,
+    SORT_CARS_OF_TRAINS_BY_ITS_TYPES_AND_VIEW_IT,
+    FIND_AND_SHOW_CARS_BY_RANGE_OF_PASSENGERS,
+}

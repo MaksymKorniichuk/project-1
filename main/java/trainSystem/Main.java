@@ -4,6 +4,8 @@ import trainSystem.controller.Controller;
 import trainSystem.model.WorkWithTrains;
 import trainSystem.view.View;
 
+import java.util.LinkedList;
+
 /**
  * Class, that initializes and run program.
  * @author Maksym
