@@ -3,6 +3,7 @@ package trainSystem.controller;
 import trainSystem.model.WorkWithTrains;
 import trainSystem.model.entities.Train;
 import trainSystem.model.entities.car.Car;
+import trainSystem.view.MenuItems;
 import trainSystem.view.View;
 
 import java.io.InputStream;
@@ -66,23 +67,24 @@ public class Controller {
 
             // if we are here, input value is an integer
             intInput = scanner.nextInt(); // getting input number
-            switch (intInput) { // doing appropriate action on inputted menu item
-                case 1:
+            MenuItems menuItems = MenuItems.values()[intInput-1];
+            switch (menuItems) { // doing appropriate action on inputted menu item
+                case SHOW_EXISTING_TRAINS:
                     showExistingTrains();
                     break;
-                case 2:
+                case SHOW_PASSENGERS_NUMBER_IN_TRAINS:
                     showPassengersNumberInTrains();
                     break;
-                case 3:
+                case SHOW_BAGGAGE_NUMBER_IN_TRAINS:
                     showBaggageNumberInTrains();
                     break;
-                case 4:
+                case SORT_CARS_OF_TRAINS_BY_ITS_NUMBERS_AND_VIEW_IT:
                     sortCarsOfTrainsByItsNumbersAndViewIt();
                     break;
-                case 5:
+                case SORT_CARS_OF_TRAINS_BY_ITS_TYPES_AND_VIEW_IT:
                     sortCarsOfTrainsByItsTypesAndViewIt();
                     break;
-                case 6:
+                case FIND_AND_SHOW_CARS_BY_RANGE_OF_PASSENGERS:
                     findAndShowCarsByRangeOfPassengers(scanner);
                     break;
                 default:
@@ -170,7 +172,7 @@ public class Controller {
         view.printMessageWithRange("\n" + view.CAR_WITH_PASSENGERS_IN_RANGE, minLimitOfPassengers,
                 maxLimitOfPassengers);
         for (Train train : trains) {
-            ArrayList<Car> cars = workWithTrains.getCarsFromTrainWithNumbersOfPassengersInRange(train,
+            List<Car> cars = workWithTrains.getCarsFromTrainWithNumbersOfPassengersInRange(train,
                     minLimitOfPassengers, maxLimitOfPassengers);
             if(cars.size() != 0){
                 numberOfFoundedCars += cars.size();
